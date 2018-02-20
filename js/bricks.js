@@ -18,7 +18,6 @@ function getBricksGrid(){
         }
         grid.push(row);
     }
-
     return grid;
 }
 
@@ -31,7 +30,7 @@ function getBrickColor(brick){
 }
 
 function renderBrick(x, y, color){
-    offset = 10;
+    offset = 6;
     drawRectangle(context,
         {
             x: x+(offset/2),
@@ -52,9 +51,11 @@ function renderBricks(){
     brick_height = canvas.height/BRICKS_GRID_HEIGHT/BRICKS_AREA;
     for(i = 0; i < BRICKS_GRID_HEIGHT; i++){
         for(j = 0; j < BRICKS_GRID_WIDTH; j++){
+            if(bricks[i][j] !== undefined){
+                color = getBrickColor(bricks[i][j]);
+                renderBrick(x, y, color);
+            }
             x += brick_width;
-            color = getBrickColor(bricks[i][j]);
-            renderBrick(x, y, color);
         }
         x = 0;
         y += brick_height;

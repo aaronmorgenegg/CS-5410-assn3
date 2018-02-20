@@ -5,12 +5,12 @@
 PADDLE_WIDTH = 100;
 BRICKS_GRID_WIDTH = 14;
 BRICKS_GRID_HEIGHT = 8; // May get funky if this isn't divisible by 4
-YELLOW_BRICK = 1;
-ORANGE_BRICK = 2;
-BLUE_BRICK = 3;
-GREEN_BRICK = 5;
+YELLOW_BRICK = 1; // Score value for yellow bricks
+ORANGE_BRICK = 2; // Score value for orange bricks
+BLUE_BRICK = 3; // Score value for blue bricks
+GREEN_BRICK = 5; // Score value for green bricks
 MAX_POSSIBLE_SCORE = (YELLOW_BRICK+ORANGE_BRICK+BLUE_BRICK+GREEN_BRICK)*((BRICKS_GRID_HEIGHT/4)*BRICKS_GRID_WIDTH);
-BRICKS_AREA = 4; // bricks take up 1/4 of the game area
+BRICKS_AREA = 5; // adjusts the area the bricks take up, as well as the area above the bricks
 
 // Rendering options
 
