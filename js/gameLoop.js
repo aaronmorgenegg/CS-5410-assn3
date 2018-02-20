@@ -16,6 +16,7 @@ function ititialize(){
         'bricks': getBricksGrid(),
         'paddle': getPaddle()
     };
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -30,6 +31,9 @@ function update(){
 function render(){
     canvas = document.getElementById('canvas_main');
     context = canvas.getContext('2d');
+
+    renderBackground();
+    renderBricks();
 }
 
 function gameLoop(){

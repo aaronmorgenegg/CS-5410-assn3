@@ -21,3 +21,42 @@ function getBricksGrid(){
 
     return grid;
 }
+
+function getBrickColor(brick){
+    // returns color of brick based on its score
+    if(brick === YELLOW_BRICK) return YELLOW_COLOR;
+    if(brick === ORANGE_BRICK) return ORANGE_COLOR;
+    if(brick === BLUE_BRICK) return BLUE_COLOR;
+    if(brick === GREEN_BRICK) return GREEN_COLOR;
+}
+
+function renderBrick(x, y, color){
+    offset = 10;
+    drawRectangle(context,
+        {
+            x: x+(offset/2),
+            y: y+(offset/2),
+            width: canvas.width/BRICKS_GRID_WIDTH - offset,
+            height: canvas.height/BRICKS_GRID_HEIGHT/BRICKS_AREA - offset,
+            fill: color,
+            stroke: 'rgba(55, 55, 55, 1)'
+        }
+    );
+}
+
+function renderBricks(){
+    bricks = game_data['bricks'];
+    x = 0;
+    y = canvas.height/BRICKS_AREA;
+    brick_width = canvas.width/BRICKS_GRID_WIDTH;
+    brick_height = canvas.height/BRICKS_GRID_HEIGHT/BRICKS_AREA;
+    for(i = 0; i < BRICKS_GRID_HEIGHT; i++){
+        for(j = 0; j < BRICKS_GRID_WIDTH; j++){
+            x += brick_width;
+            color = getBrickColor(bricks[i][j]);
+            renderBrick(x, y, color);
+        }
+        x = 0;
+        y += brick_height;
+    }
+}
