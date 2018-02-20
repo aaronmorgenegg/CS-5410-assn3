@@ -11,11 +11,14 @@ function ititialize(){
         },
         'player': {
             'score': 0,
-            'lives': 3
+            'lives': 3,
+            'input': ''
         },
         'bricks': getBricksGrid(),
         'paddle': getPaddle()
     };
+
+    document.addEventListener('keydown', onKeyDown);
 
     requestAnimationFrame(gameLoop);
 }
@@ -25,7 +28,7 @@ function processInput(){
 }
 
 function update(){
-
+    updateInput();
 }
 
 function render(){
@@ -34,6 +37,8 @@ function render(){
 
     renderBackground();
     renderBricks();
+    renderScore();
+    renderPaddle();
 }
 
 function gameLoop(){

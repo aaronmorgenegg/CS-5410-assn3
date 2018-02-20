@@ -1,10 +1,3 @@
-function clearCanvas(canvas, context) {
-    context.save();
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.restore();
-}
-
 function drawRectangle(context, spec) {
     context.save();
 
@@ -31,3 +24,13 @@ function renderBackground() {
         }
     );
 }
+
+function renderScore(){
+    context.font=SCORE_FONT;
+    x = 10;
+    y = canvas.height;
+    drawRectangle(context, {'x':0,'y':y-30,'width':100,'height':30,
+                             'stroke':UI_BACKDROP_COLOR, 'fill':UI_BACKDROP_COLOR});
+    context.fillText(game_data['player']['score'], x, y-5);
+}
+
