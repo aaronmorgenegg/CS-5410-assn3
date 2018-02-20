@@ -8,7 +8,13 @@ function ititialize(){
             'current':0,
             'elapsed':0,
             'running':0
-        }
+        },
+        'player': {
+            'score': 0,
+            'lives': 3
+        },
+        'bricks': getBricksGrid(),
+        'paddle': getPaddle()
     };
     requestAnimationFrame(gameLoop);
 }
@@ -34,7 +40,7 @@ function gameLoop(){
     render();
 
     // Event-based model, makes a request to the browser to loop when its ready. Allows the browser to do other things
-    requestAnimationFrame(gameLoop)
+    if(!checkEndGame()) requestAnimationFrame(gameLoop)
 }
 
 ititialize();

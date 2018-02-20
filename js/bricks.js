@@ -1,6 +1,3 @@
-BRICKS_GRID_WIDTH = 14;
-BRICKS_GRID_HEIGHT = 8;
-
 function getBricksGrid(){
     // Returns grid of bricks, where each brick is represented by
     // either their score value, or undefined meaning it is gone.
@@ -9,14 +6,14 @@ function getBricksGrid(){
     for(i = 0; i < BRICKS_GRID_HEIGHT; i++){
         row = [];
         for(j = 0; j < BRICKS_GRID_WIDTH; j++){
-            if(i < 2){
-                row.push(5);
-            } else if(i < 4){
-                row.push(3);
-            } else if(i < 6){
-                row.push(2);
+            if(i < BRICKS_GRID_HEIGHT*.25){
+                row.push(GREEN_BRICK);
+            } else if(i < BRICKS_GRID_HEIGHT*.5){
+                row.push(BLUE_BRICK);
+            } else if(i < BRICKS_GRID_HEIGHT*.75){
+                row.push(ORANGE_BRICK);
             } else {
-                row.push(1);
+                row.push(YELLOW_BRICK);
             }
         }
         grid.push(row);
@@ -24,4 +21,3 @@ function getBricksGrid(){
 
     return grid;
 }
-
