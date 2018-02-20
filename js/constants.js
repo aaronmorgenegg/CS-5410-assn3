@@ -6,6 +6,7 @@ PADDLE_WIDTH = 100;
 PADDLE_HEIGHT = 20;
 PADDLE_FILL = 'rgba(155, 155, 155, 1)';
 PADDLE_STROKE = 'rgba(255, 255, 255, 1)';
+PADDLE_SPEED = 0.001;
 BRICKS_GRID_WIDTH = 14;
 BRICKS_GRID_HEIGHT = 8; // May get funky if this isn't divisible by 4
 YELLOW_BRICK = 1; // Score value for yellow bricks

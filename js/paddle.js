@@ -7,14 +7,16 @@ function shrinkPaddle(){
 }
 
 function movePaddleLeft(){
-    if(game_data.paddle['xpos']>0){
-        game_data.paddle['xpos'] -= 0.01;
+    game_data.paddle['xpos'] -= PADDLE_SPEED * game_data.time['elapsed'];
+    if(game_data.paddle['xpos']<0){
+        game_data.paddle['xpos'] = 0;
     }
 }
 
 function movePaddleRight(){
-    if(game_data.paddle['xpos']<1){
-        game_data.paddle['xpos'] += 0.01;
+    game_data.paddle['xpos'] += PADDLE_SPEED * game_data.time['elapsed'];
+    if(game_data.paddle['xpos']>1){
+        game_data.paddle['xpos'] = 1;
     }
 }
 
