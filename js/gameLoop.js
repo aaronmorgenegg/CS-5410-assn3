@@ -15,7 +15,8 @@ function ititialize(){
             'input': ''
         },
         'bricks': getBricksGrid(),
-        'paddle': getPaddle()
+        'paddle': getPaddle(),
+        'balls': [getBall()]
     };
 
     document.addEventListener('keydown', onKeyDown);
@@ -36,8 +37,9 @@ function render(){
     context = canvas.getContext('2d');
 
     renderBackground();
-    renderBricks();
     renderScore();
+    renderBalls();
+    renderBricks();
     renderPaddle();
 }
 

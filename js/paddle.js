@@ -1,5 +1,5 @@
 function getPaddle(){
-    return {'width': PADDLE_WIDTH, 'xpos':.5};
+    return {'width': PADDLE_WIDTH, 'xpos':.5, 'ypos':1 - 1/BRICKS_AREA};
 }
 
 function shrinkPaddle(){
@@ -8,22 +8,22 @@ function shrinkPaddle(){
 
 function movePaddleLeft(){
     game_data.paddle['xpos'] -= PADDLE_SPEED * game_data.time['elapsed'];
-    if(game_data.paddle['xpos']<0){
-        game_data.paddle['xpos'] = 0;
+    if(game_data.paddle['xpos']<0.05){
+        game_data.paddle['xpos'] = 0.05;
     }
 }
 
 function movePaddleRight(){
     game_data.paddle['xpos'] += PADDLE_SPEED * game_data.time['elapsed'];
-    if(game_data.paddle['xpos']>1){
-        game_data.paddle['xpos'] = 1;
+    if(game_data.paddle['xpos']>.95){
+        game_data.paddle['xpos'] = .95;
     }
 }
 
 function renderPaddle() {
     paddle = game_data['paddle'];
     x = canvas.width*paddle.xpos - PADDLE_WIDTH/2;
-    y = canvas.height - canvas.height/BRICKS_AREA;
+    y = canvas.height*paddle.ypos - PADDLE_HEIGHT/2;
     drawRectangle(context,
         {
             x: x,

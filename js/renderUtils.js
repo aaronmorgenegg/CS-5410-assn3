@@ -11,6 +11,19 @@ function drawRectangle(context, spec) {
 
 }
 
+function drawCircle(context, spec) {
+    context.beginPath();
+
+    context.fillStyle = spec.fill;
+    context.arc(spec.x, spec.y, spec.radius, 0, 2*Math.PI);
+
+    context.strokeStyle = spec.stroke;
+    context.arc(spec.x, spec.y, spec.radius, 0, 2*Math.PI);
+
+    context.stroke();
+
+}
+
 function renderBackground() {
     // Black box background
     drawRectangle(context,
