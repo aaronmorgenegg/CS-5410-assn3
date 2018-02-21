@@ -25,6 +25,8 @@ function drawCircle(context, spec) {
 }
 
 function renderBackground() {
+    canvas = game_data['canvas'];
+    context = game_data['context'];
     // Black box background
     drawRectangle(context,
         {
@@ -39,6 +41,8 @@ function renderBackground() {
 }
 
 function renderScore(){
+    canvas = game_data['canvas'];
+    context = game_data['context'];
     context.font=SCORE_FONT;
     x = 10;
     y = canvas.height;
@@ -47,3 +51,19 @@ function renderScore(){
     context.fillText(game_data['player']['score'], x, y-5);
 }
 
+function renderLives(){
+    canvas = game_data['canvas'];
+    context = game_data['context'];
+    x = canvas.width - PADDLE_WIDTH * game_data.player['lives'];
+    y = 0;
+    drawRectangle(context,
+        {
+            x: x,
+            y: y,
+            width: PADDLE_WIDTH,
+            height: PADDLE_HEIGHT,
+            fill: PADDLE_FILL,
+            stroke: PADDLE_STROKE
+        }
+    );
+}

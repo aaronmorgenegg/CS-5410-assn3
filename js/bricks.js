@@ -30,7 +30,9 @@ function getBrickColor(brick){
 }
 
 function renderBrick(x, y, color){
-    offset = 6;
+    canvas = game_data['canvas'];
+    context = game_data['context'];
+    offset = 4;
     drawRectangle(context,
         {
             x: x+(offset/2),
@@ -44,6 +46,8 @@ function renderBrick(x, y, color){
 }
 
 function renderBricks(){
+    canvas = game_data['canvas'];
+    context = game_data['context'];
     bricks = game_data['bricks'];
     x = 0;
     y = canvas.height/BRICKS_AREA;

@@ -2,6 +2,8 @@ game_data = {};
 
 function ititialize(){
     // Initializes the textures, options, and calls gameLoop
+    canvas = document.getElementById('canvas_main');
+    context = canvas.getContext('2d');
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -14,12 +16,22 @@ function ititialize(){
             'lives': 3,
             'input': ''
         },
+        'options':{
+            'paused': false
+        },
+        'state': {
+            'bricks_removed': 0,
+            'ball_speed_mult': 1
+        },
         'bricks': getBricksGrid(),
         'paddle': getPaddle(),
-        'balls': [getBall()]
+        'balls': [getBall()],
+        'canvas': canvas,
+        'context': context
     };
 
     document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keyup', onKeyUp);
 
     requestAnimationFrame(gameLoop);
 }
@@ -29,15 +41,16 @@ function processInput(){
 }
 
 function update(){
-    updateInput();
+    if(!game_data.options['paused']) {
+        updateInput();
+        moveBalls(); // TODO: change to updateballs, wrap moveballs in it
+    }
 }
 
 function render(){
-    canvas = document.getElementById('canvas_main');
-    context = canvas.getContext('2d');
-
     renderBackground();
     renderScore();
+    renderLives();
     renderBalls();
     renderBricks();
     renderPaddle();

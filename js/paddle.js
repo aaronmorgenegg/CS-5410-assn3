@@ -21,6 +21,8 @@ function movePaddleRight(){
 }
 
 function renderPaddle() {
+    canvas = game_data['canvas'];
+    context = game_data['context'];
     paddle = game_data['paddle'];
     x = canvas.width*paddle.xpos - PADDLE_WIDTH/2;
     y = canvas.height*paddle.ypos - PADDLE_HEIGHT/2;
