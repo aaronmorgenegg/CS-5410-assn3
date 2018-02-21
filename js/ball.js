@@ -27,7 +27,7 @@ function handleWallCollision(ball){
 }
 
 function handlePaddleCollision(ball){
-    
+
 }
 
 function handleBrickCollision(ball){

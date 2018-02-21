@@ -9,7 +9,8 @@ function ititialize(){
             'previous':performance.now(),
             'current':0,
             'elapsed':0,
-            'running':0
+            'running':0,
+            'countdown': 3000
         },
         'player': {
             'score': 0,
@@ -17,7 +18,7 @@ function ititialize(){
             'input': ''
         },
         'options':{
-            'paused': false
+            'paused': true
         },
         'state': {
             'bricks_removed': 0,
@@ -41,14 +42,16 @@ function processInput(){
 }
 
 function update(){
+    updateCountdown();
     if(!game_data.options['paused']) {
-        updateInput();
+        updateMovement();
         moveBalls(); // TODO: change to updateballs, wrap moveballs in it
     }
 }
 
 function render(){
     renderBackground();
+    renderCountdown();
     renderScore();
     renderLives();
     renderBalls();

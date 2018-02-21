@@ -6,7 +6,7 @@ function checkEndGame(){
     return false;
 }
 
-function updateInput(){
+function updateMovement(){
     input = game_data.player['input'];
     if(input==='l'){
         movePaddleLeft();
@@ -21,6 +21,9 @@ function onKeyDown(e) {
     }
     if (e.keyCode === 65 || e.keyCode === 74 || e.keyCode === 37) {
         game_data.player['input'] = 'l';
+    }
+    if (e.keyCode === 27) {
+        enterMenu();
     }
 }
 
