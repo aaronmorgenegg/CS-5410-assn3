@@ -17,9 +17,29 @@ function renderBall(ball) {
     );
 }
 
+function handleWallCollision(ball){
+    if(ball['xpos'] <= 0.01 || ball['xpos'] >= .99) {
+        ball['xvel'] *= -1;
+    }
+    if(ball['ypos'] <= 0.01 || ball['ypos'] >= .99) {
+        ball['yvel'] *= -1;
+    }
+}
+
+function handlePaddleCollision(ball){
+    
+}
+
+function handleBrickCollision(ball){
+
+}
+
 function moveBall(ball){
     ball['xpos'] += ball.xvel * game_data.time['elapsed'] * game_data.state['ball_speed_mult'];
     ball['ypos'] += ball.yvel * game_data.time['elapsed'] * game_data.state['ball_speed_mult'];
+    handleWallCollision(ball);
+    handlePaddleCollision(ball);
+    handleBrickCollision(ball);
 }
 
 function moveBalls(){
