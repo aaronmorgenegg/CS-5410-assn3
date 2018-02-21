@@ -12,7 +12,6 @@ function renderBall(ball) {
             x: x,
             y: y,
             radius: BALL_SIZE,
-            fill: BALL_FILL,
             stroke: BALL_STROKE
         }
     );

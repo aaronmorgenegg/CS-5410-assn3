@@ -14,9 +14,6 @@ function drawRectangle(context, spec) {
 function drawCircle(context, spec) {
     context.beginPath();
 
-    context.fillStyle = spec.fill;
-    context.arc(spec.x, spec.y, spec.radius, 0, 2*Math.PI);
-
     context.strokeStyle = spec.stroke;
     context.arc(spec.x, spec.y, spec.radius, 0, 2*Math.PI);
 
@@ -46,24 +43,26 @@ function renderScore(){
     context.font=SCORE_FONT;
     x = 10;
     y = canvas.height;
-    drawRectangle(context, {'x':0,'y':y-30,'width':100,'height':30,
-                             'stroke':UI_BACKDROP_COLOR, 'fill':UI_BACKDROP_COLOR});
+    context.fillStyle = SCORE_COLOR;
     context.fillText(game_data['player']['score'], x, y-5);
 }
 
 function renderLives(){
     canvas = game_data['canvas'];
     context = game_data['context'];
-    x = canvas.width - PADDLE_WIDTH * game_data.player['lives'];
-    y = 0;
-    drawRectangle(context,
-        {
-            x: x,
-            y: y,
-            width: PADDLE_WIDTH,
-            height: PADDLE_HEIGHT,
-            fill: PADDLE_FILL,
-            stroke: PADDLE_STROKE
-        }
-    );
+    x = canvas.width - PADDLE_WIDTH * game_data.player['lives'] - 50;
+    y = 5;
+    for(i = 0; i < game_data.player['lives']; i++) {
+        drawRectangle(context,
+            {
+                x: x,
+                y: y,
+                width: PADDLE_WIDTH,
+                height: PADDLE_HEIGHT,
+                fill: PADDLE_FILL,
+                stroke: PADDLE_STROKE
+            }
+        );
+        x += PADDLE_WIDTH + 15;
+    }
 }
