@@ -72,7 +72,8 @@ function gameLoop(){
     render();
 
     // Event-based model, makes a request to the browser to loop when its ready. Allows the browser to do other things
-    if(!checkEndGame()) requestAnimationFrame(gameLoop)
+    if(!checkEndGame()) requestAnimationFrame(gameLoop);
+    else gameOver();
 }
 
 ititialize();

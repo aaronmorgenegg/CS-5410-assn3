@@ -50,4 +50,10 @@ function resetLife(){
     game_data.options['paused'] = true;
     game_data.state['bricks_removed'] = 0;
     game_data.state['ball_speed_mult'] = 1;
+    setCountdown();
 }
+
+function gameOver(){
+    renderGameOver();
+}
+

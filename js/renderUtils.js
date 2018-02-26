@@ -62,7 +62,7 @@ function renderScore(){
 function renderLives(){
     canvas = game_data['canvas'];
     context = game_data['context'];
-    x = canvas.width - PADDLE_WIDTH * game_data.player['lives'] - 50;
+    x = canvas.width - 50 - PADDLE_WIDTH * game_data.player['lives'];
     y = 5;
     for(i = 0; i < game_data.player['lives']; i++) {
         drawRectangle(context,
@@ -77,4 +77,16 @@ function renderLives(){
         );
         x += PADDLE_WIDTH + 15;
     }
+}
+
+
+function renderGameOver(){
+    canvas = game_data['canvas'];
+    context = game_data['context'];
+    context.font=GAME_OVER_FONT;
+    x = canvas.width/4;
+    y = canvas.height/2 - 100;
+    context.fillStyle = GAME_OVER_COLOR;
+    context.fillText("GAME", x, y);
+    context.fillText("OVER", x, y+200);
 }

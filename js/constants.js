@@ -32,3 +32,5 @@ PADDLE_FILL = 'rgba(55, 55, 55, 1)';
 PADDLE_STROKE = 'rgba(255, 255, 255, 1)';
 BALL_FILL = 'rgba(255, 255, 255, 1)';
 BALL_STROKE = 'rgba(255, 255, 255, 1)';
+GAME_OVER_FONT = '180px Arial';
+GAME_OVER_COLOR = 'rgba(255, 55, 55, 1)';
