@@ -17,6 +17,9 @@ function drawCircle(context, spec) {
     context.strokeStyle = spec.stroke;
     context.arc(spec.x, spec.y, spec.radius, 0, 2*Math.PI);
 
+    context.fillStyle = spec.fill;
+    context.fill();
+
     context.stroke();
 
 }
@@ -25,15 +28,24 @@ function renderBackground() {
     canvas = game_data['canvas'];
     context = game_data['context'];
     // Black box background
-    drawRectangle(context,
-        {
-            x: 0,
-            y: 0,
-            width: canvas.width,
-            height: canvas.height,
-            fill: 'rgba(55, 55, 55, 1)',
-            stroke: 'rgba(0, 0, 0, 1)'
-        }
+    // drawRectangle(context,
+    //     {
+    //         x: 0,
+    //         y: 0,
+    //         width: canvas.width,
+    //         height: canvas.height,
+    //         fill: 'rgba(55, 55, 55, 1)',
+    //         stroke: 'rgba(0, 0, 0, 1)'
+    //     }
+    // );
+
+    // Image background
+    context.drawImage(
+        img = game_data.textures['background'],
+        x = 0,
+        y = 0,
+        width = canvas.width,
+        height = canvas.height
     );
 }
 

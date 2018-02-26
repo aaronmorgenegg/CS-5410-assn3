@@ -35,3 +35,19 @@ function onKeyUp(e) {
         if(game_data.player['input'] === 'l') game_data.player['input'] = '';
     }
 }
+
+function updateLife(){
+    if(game_data['balls'].length === 0){
+        resetLife();
+    }
+}
+
+function resetLife(){
+    game_data.player['lives'] -= 1;
+
+    game_data['paddle'] = getPaddle();
+    game_data['balls'] = [getBall()];
+    game_data.options['paused'] = true;
+    game_data.state['bricks_removed'] = 0;
+    game_data.state['ball_speed_mult'] = 1;
+}

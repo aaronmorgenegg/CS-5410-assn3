@@ -4,6 +4,7 @@ function ititialize(){
     // Initializes the textures, options, and calls gameLoop
     canvas = document.getElementById('canvas_main');
     context = canvas.getContext('2d');
+    background = document.getElementById("img-background");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -23,6 +24,9 @@ function ititialize(){
         'state': {
             'bricks_removed': 0,
             'ball_speed_mult': 1
+        },
+        'textures':{
+            'background': background
         },
         'bricks': getBricksGrid(),
         'paddle': getPaddle(),
@@ -45,7 +49,8 @@ function update(){
     updateCountdown();
     if(!game_data.options['paused']) {
         updateMovement();
-        moveBalls(); // TODO: change to updateballs, wrap moveballs in it
+        updateBalls();
+        updateLife();
     }
 }
 
