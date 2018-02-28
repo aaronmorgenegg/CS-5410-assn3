@@ -62,7 +62,7 @@ function renderScore(){
 function renderLives(){
     canvas = game_data['canvas'];
     context = game_data['context'];
-    x = canvas.width - 50 - PADDLE_WIDTH * game_data.player['lives'];
+    x = canvas.width - 15 - PADDLE_WIDTH;
     y = 5;
     for(i = 0; i < game_data.player['lives']; i++) {
         drawRectangle(context,
@@ -75,7 +75,7 @@ function renderLives(){
                 stroke: PADDLE_STROKE
             }
         );
-        x += PADDLE_WIDTH + 15;
+        x -= PADDLE_WIDTH + 15;
     }
 }
 
