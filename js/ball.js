@@ -38,16 +38,25 @@ function handlePaddleCollision(i){
     }
 }
 
+function getBrickY(ball_y){
+    for(i = 0; i < BRICKS_GRID_HEIGHT; i++){
+        rel_pos = (1+i/BRICKS_GRID_HEIGHT)/BRICKS_AREA;
+        if(ball_y < rel_pos){
+            return i-1;
+        }
+    }
+    return BRICKS_GRID_HEIGHT-1;
+}
+
 function handleBrickCollision(i){
     if(game_data.balls[i] === undefined) return;
     brick_step_x = 1/BRICKS_GRID_WIDTH;
     brick_step_y = 1/BRICKS_GRID_HEIGHT;
     brick_min_y = 1/BRICKS_AREA;
     brick_max_y = 2/BRICKS_AREA;
-    ball_rel_pos_y = ((brick_max_y/(1*game_data.balls[i]['ypos']))+1)/BRICKS_AREA;
     if(game_data.balls[i]['ypos']>= brick_min_y && game_data.balls[i]['ypos'] <= brick_max_y){
         brick_x = Math.floor(game_data.balls[i]['xpos']/brick_step_x);
-        brick_y = Math.floor(game_data.balls[i]['ypos']/brick_step_y/ball_rel_pos_y);
+        brick_y = getBrickY(game_data.balls[i]['ypos']);
         hitBrick(i, brick_x, brick_y);
     }
 }
