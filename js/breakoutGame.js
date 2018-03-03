@@ -55,5 +55,20 @@ function resetLife(){
 
 function gameOver(){
     renderGameOver();
+    saveHighScores();
 }
 
+function loadHighScores(){
+    high_scores = localStorage['high_scores'];
+    if(high_scores !== undefined){
+        return JSON.parse(high_scores);
+    } else{
+        return [];
+    }
+}
+
+function saveHighScores(){
+    game_data['high_scores'].push(game_data.player['score']);
+    game_data['high_scores'].sort(function(a, b){return b - a});
+    localStorage['high_scores'] = JSON.stringify(game_data['high_scores']);
+}

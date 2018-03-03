@@ -32,7 +32,8 @@ function ititialize(){
         'paddle': getPaddle(),
         'balls': [getBall()],
         'canvas': canvas,
-        'context': context
+        'context': context,
+        'high_scores': loadHighScores()
     };
 
     document.addEventListener('keydown', onKeyDown);
