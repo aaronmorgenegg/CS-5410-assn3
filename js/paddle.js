@@ -8,15 +8,15 @@ function shrinkPaddle(){
 
 function movePaddleLeft(){
     game_data.paddle['xpos'] -= PADDLE_SPEED * game_data.time['elapsed'];
-    if(game_data.paddle['xpos']<0.05){
-        game_data.paddle['xpos'] = 0.05;
+    if(game_data.paddle['xpos'] < game_data.paddle['width']/game_data.canvas.width/2){
+        game_data.paddle['xpos'] = game_data.paddle['width']/game_data.canvas.width/2;
     }
 }
 
 function movePaddleRight(){
     game_data.paddle['xpos'] += PADDLE_SPEED * game_data.time['elapsed'];
-    if(game_data.paddle['xpos']>.95){
-        game_data.paddle['xpos'] = .95;
+    if(game_data.paddle['xpos']> 1 - game_data.paddle['width']/game_data.canvas.width/2){
+        game_data.paddle['xpos'] = 1 - game_data.paddle['width']/game_data.canvas.width/2;
     }
 }
 
@@ -24,7 +24,7 @@ function renderPaddle() {
     canvas = game_data['canvas'];
     context = game_data['context'];
     paddle = game_data['paddle'];
-    x = canvas.width*paddle.xpos - PADDLE_WIDTH/2;
+    x = canvas.width*paddle.xpos - paddle['width']/2;
     y = canvas.height*paddle.ypos - PADDLE_HEIGHT/2;
     drawRectangle(context,
         {

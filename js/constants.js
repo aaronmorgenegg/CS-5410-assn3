@@ -34,3 +34,7 @@ BALL_FILL = 'rgba(255, 255, 255, 1)';
 BALL_STROKE = 'rgba(255, 255, 255, 1)';
 GAME_OVER_FONT = '180px Arial';
 GAME_OVER_COLOR = 'rgba(255, 55, 55, 1)';
+MENU_FONT = '30px Arial';
+MENU_FONT_COLOR = 'rgba(255, 255, 255, 1)';
+MENU_BUTTON_FILL = 'rgba(100, 100, 155, 1)';
+MENU_BUTTON_STROKE = 'rgba(55, 55, 55, 1)';

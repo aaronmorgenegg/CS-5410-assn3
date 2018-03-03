@@ -19,7 +19,8 @@ function ititialize(){
             'input': ''
         },
         'options':{
-            'paused': true
+            'paused': true,
+            'menu': true
         },
         'state': {
             'bricks_removed': 0,
@@ -57,12 +58,16 @@ function update(){
 
 function render(){
     renderBackground();
-    renderCountdown();
-    renderScore();
-    renderLives();
-    renderBalls();
-    renderBricks();
-    renderPaddle();
+    if(!game_data.options['menu']) {
+        renderCountdown();
+        renderScore();
+        renderLives();
+        renderBalls();
+        renderBricks();
+        renderPaddle();
+    } else {
+        renderMenu();
+    }
 }
 
 function gameLoop(){

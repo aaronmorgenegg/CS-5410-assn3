@@ -11,7 +11,6 @@ function updateCountdown(){
 
 function enterMenu(){
     game_data.options['paused'] = true;
-    setCountdown();
 }
 
 function renderCountdown(){
@@ -25,4 +24,35 @@ function renderCountdown(){
         context.fillStyle = COUNTDOWN_COLOR;
         context.fillText(countdown, x, y);
     }
+}
+
+function renderMenuButton(spec){
+    canvas = game_data['canvas'];
+    context = game_data['context'];
+
+    x = canvas.width/2 - 125;
+    y = spec.y;
+
+    drawRectangle(context,
+        {
+            x: x,
+            y: y,
+            width: 250,
+            height: 50,
+            fill: MENU_BUTTON_FILL,
+            stroke: MENU_BUTTON_STROKE
+        }
+    );
+
+    context.font=MENU_FONT;
+    x = canvas.width/2 - (spec.msg.length*5) - 25;
+    y += 35;
+    context.fillStyle = MENU_FONT_COLOR;
+    context.fillText(spec.msg, x, y);
+
+}
+
+function renderMenu(){
+    renderMenuButton({msg:'Resume', y:300});
+    renderMenuButton({msg:'High Scores', y:400});
 }

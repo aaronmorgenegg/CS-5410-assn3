@@ -5,7 +5,6 @@ function getBall(){
 }
 
 function handleWallCollision(i){
-    if(game_data.balls[i] === undefined) return;
     if(game_data.balls[i]['ypos'] >= .995){
         delete game_data.balls[i];
     }
@@ -31,7 +30,6 @@ function getReflectionAngle(ball_x){
 }
 
 function handlePaddleCollision(i){
-    if(game_data.balls[i] === undefined) return;
     paddle = game_data.paddle;
     paddle_min_x = paddle['xpos']-(paddle['width']/game_data['canvas'].width)/2;
     paddle_max_x = paddle['xpos']+(paddle['width']/game_data['canvas'].width)/2;
@@ -56,7 +54,6 @@ function getBrickY(ball_y){
 }
 
 function handleBrickCollision(i){
-    if(game_data.balls[i] === undefined) return;
     brick_step_x = 1/BRICKS_GRID_WIDTH;
     brick_step_y = 1/BRICKS_GRID_HEIGHT;
     brick_min_y = 1/BRICKS_AREA;
@@ -68,9 +65,16 @@ function handleBrickCollision(i){
     }
 }
 
+function updateExtraBalls(score, brick){
+    if(score % 100 > (score+brick) % 100){
+        game_data.balls.push(getBall());
+    }
+}
+
 function hitBrick(i, brick_x, brick_y){
     if(game_data.bricks[brick_y][brick_x] !== undefined) {
         game_data.balls[i]['yvel'] *= -1;
+        updateExtraBalls(game_data.player['score'], game_data.bricks[brick_y][brick_x]);
         game_data.player['score'] += game_data.bricks[brick_y][brick_x];
         game_data.state['bricks_removed'] += 1;
         if(brick_y <= 0) shrinkPaddle();
@@ -81,9 +85,9 @@ function hitBrick(i, brick_x, brick_y){
 function moveBall(i){
     game_data.balls[i]['xpos'] += game_data.balls[i].xvel * game_data.time['elapsed'] * game_data.state['ball_speed_mult'];
     game_data.balls[i]['ypos'] += game_data.balls[i].yvel * game_data.time['elapsed'] * game_data.state['ball_speed_mult'];
-    handleWallCollision(i);
     handlePaddleCollision(i);
     handleBrickCollision(i);
+    handleWallCollision(i);
 }
 
 function moveBalls(){
@@ -101,7 +105,6 @@ function updateBallSpeedMult(){
 
 function updateNumberOfBalls(){
     game_data['balls'] = game_data['balls'].filter(function(n){ return n !== undefined });
-    if(game_data.balls.length < (game_data.player['score']/100 + 1) && game_data.player['score'] % 100 === 0) game_data['balls'].push(getBall());
 }
 
 function updateBalls(){
