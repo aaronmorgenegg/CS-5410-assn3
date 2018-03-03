@@ -23,18 +23,25 @@ function handleWallCollision(i){
     }
 }
 
+function getReflectionAngle(ball_x){
+    value = ball_x - game_data.paddle['xpos'];
+    value = value/(game_data.paddle['width']/(2*game_data.canvas.width));
+    value = BALL_SPEED * value;
+    return value;
+}
+
 function handlePaddleCollision(i){
     if(game_data.balls[i] === undefined) return;
     paddle = game_data.paddle;
     paddle_min_x = paddle['xpos']-(paddle['width']/game_data['canvas'].width)/2;
     paddle_max_x = paddle['xpos']+(paddle['width']/game_data['canvas'].width)/2;
-    if(Math.abs(game_data.balls[i]['ypos']-paddle['ypos']) <= 0.01 &&
+    if(Math.abs(game_data.balls[i]['ypos']-paddle['ypos']) <= 0.025 &&
        Math.abs(game_data.balls[i]['xpos']>=paddle_min_x) &&
        Math.abs(game_data.balls[i]['xpos']<=paddle_max_x) &&
        game_data.balls[i]['yvel']>=0)
     {
         game_data.balls[i]['yvel'] *= -1;
-        // TODO: handle xvel reflection angle
+        game_data.balls[i]['xvel'] = getReflectionAngle(game_data.balls[i]['xpos']);
     }
 }
 
@@ -62,12 +69,11 @@ function handleBrickCollision(i){
 }
 
 function hitBrick(i, brick_x, brick_y){
-    console.log("Ball Pos X:" + game_data.balls[i]['xpos'] + ". Y:" + game_data.balls[i]['ypos']);
-    console.log("Hit Brick X:" + brick_x + ". Y:" + brick_y);
     if(game_data.bricks[brick_y][brick_x] !== undefined) {
         game_data.balls[i]['yvel'] *= -1;
         game_data.player['score'] += game_data.bricks[brick_y][brick_x];
         game_data.state['bricks_removed'] += 1;
+        if(brick_y <= 0) shrinkPaddle();
         game_data.bricks[brick_y][brick_x] = undefined;
     }
 }

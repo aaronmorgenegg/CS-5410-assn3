@@ -54,8 +54,8 @@ function resetLife(){
 }
 
 function gameOver(){
-    renderGameOver();
     saveHighScores();
+    renderGameOver();
 }
 
 function loadHighScores(){

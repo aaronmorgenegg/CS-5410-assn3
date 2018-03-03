@@ -30,7 +30,7 @@ function renderPaddle() {
         {
             x: x,
             y: y,
-            width: PADDLE_WIDTH,
+            width: paddle['width'],
             height: PADDLE_HEIGHT,
             fill: PADDLE_FILL,
             stroke: PADDLE_STROKE
