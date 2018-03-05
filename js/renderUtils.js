@@ -53,6 +53,7 @@ function renderScore(){
     canvas = game_data['canvas'];
     context = game_data['context'];
     context.font=SCORE_FONT;
+    context.textAlign = 'left';
     x = 10;
     y = canvas.height;
     context.fillStyle = SCORE_COLOR;
@@ -84,7 +85,8 @@ function renderGameOver(){
     canvas = game_data['canvas'];
     context = game_data['context'];
     context.font=GAME_OVER_FONT;
-    x = canvas.width/4;
+    context.textAlign = 'center';
+    x = canvas.width/2;
     y = canvas.height/2 - 100;
     context.fillStyle = GAME_OVER_COLOR;
     context.fillText("GAME", x, y);

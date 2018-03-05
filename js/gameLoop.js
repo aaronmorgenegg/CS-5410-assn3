@@ -1,6 +1,6 @@
 game_data = {};
 
-function ititialize(){
+function initialize(){
     // Initializes the textures, options, and calls gameLoop
     canvas = document.getElementById('canvas_main');
     context = canvas.getContext('2d');
@@ -11,7 +11,7 @@ function ititialize(){
             'current':0,
             'elapsed':0,
             'running':0,
-            'countdown': 3000
+            'countdown': 0
         },
         'player': {
             'score': 0,
@@ -20,7 +20,9 @@ function ititialize(){
         },
         'options':{
             'paused': true,
-            'menu': true
+            'menu': true,
+            'credits': false,
+            'high_scores': false
         },
         'state': {
             'bricks_removed': 0,
@@ -39,6 +41,7 @@ function ititialize(){
 
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('keyup', onKeyUp);
+    document.addEventListener("mousedown", onMouseClick, false);
 
     requestAnimationFrame(gameLoop);
 }
@@ -48,7 +51,9 @@ function processInput(){
 }
 
 function update(){
-    updateCountdown();
+    if(!game_data.options['menu']) {
+        updateCountdown();
+    }
     if(!game_data.options['paused']) {
         updateMovement();
         updateBalls();
@@ -58,15 +63,19 @@ function update(){
 
 function render(){
     renderBackground();
-    if(!game_data.options['menu']) {
+    if(game_data.options['credits']){
+        renderCredits();
+    } else if(game_data.options['high_scores']) {
+        renderHighScores();
+    } else if(game_data.options['menu']) {
+        renderMenu();
+    } else {
         renderCountdown();
         renderScore();
         renderLives();
         renderBalls();
         renderBricks();
         renderPaddle();
-    } else {
-        renderMenu();
     }
 }
 
@@ -82,4 +91,4 @@ function gameLoop(){
     else gameOver();
 }
 
-ititialize();
+initialize();

@@ -23,6 +23,8 @@ function onKeyDown(e) {
         game_data.player['input'] = 'l';
     }
     if (e.keyCode === 27) {
+        game_data.options['credits'] = false;
+        game_data.options['high_scores'] = false;
         enterMenu();
     }
 }
