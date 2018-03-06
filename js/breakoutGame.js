@@ -65,8 +65,13 @@ function loadHighScores(){
     if(high_scores !== undefined){
         return JSON.parse(high_scores);
     } else{
-        return [];
+        return [0,0,0,0,0];
     }
+}
+
+function resetHighScores(){
+    game_data['high_scores'] = [0,0,0,0,0];
+    localStorage['high_scores'] = JSON.stringify(game_data['high_scores']);
 }
 
 function saveHighScores(){

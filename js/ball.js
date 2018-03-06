@@ -78,6 +78,7 @@ function hitBrick(i, brick_x, brick_y){
         game_data.player['score'] += game_data.bricks[brick_y][brick_x];
         game_data.state['bricks_removed'] += 1;
         if(brick_y <= 0) shrinkPaddle();
+        particularize(brick_y, brick_x);
         game_data.bricks[brick_y][brick_x] = undefined;
     }
 }

@@ -27,17 +27,6 @@ function drawCircle(context, spec) {
 function renderBackground() {
     canvas = game_data['canvas'];
     context = game_data['context'];
-    // Black box background
-    // drawRectangle(context,
-    //     {
-    //         x: 0,
-    //         y: 0,
-    //         width: canvas.width,
-    //         height: canvas.height,
-    //         fill: 'rgba(55, 55, 55, 1)',
-    //         stroke: 'rgba(0, 0, 0, 1)'
-    //     }
-    // );
 
     // Image background
     context.drawImage(

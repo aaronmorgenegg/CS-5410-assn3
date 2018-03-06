@@ -36,6 +36,7 @@ function initialize(){
         'balls': [getBall()],
         'canvas': canvas,
         'context': context,
+        'particles': [],
         'high_scores': loadHighScores()
     };
 
@@ -58,6 +59,7 @@ function update(){
         updateMovement();
         updateBalls();
         updateLife();
+        updateParticles();
     }
 }
 
@@ -76,6 +78,7 @@ function render(){
         renderBalls();
         renderBricks();
         renderPaddle();
+        renderParticles();
     }
 }
 

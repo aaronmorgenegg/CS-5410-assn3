@@ -37,6 +37,9 @@ function renderHighScores(){
         context.fillStyle = MENU_FONT_COLOR;
         context.fillText(game_data.high_scores[i], x, y);
     }
+    y += 50;
+
+    renderMenuButton({msg:'Reset Scores', y:y});
 }
 
 function creditsButton(){
@@ -63,12 +66,16 @@ function onMouseClick(){
     button_min_x = canvas.width/2 - 125;
     button_max_x = button_min_x + 250;
 
+    high_scores_button_y = game_data.canvas.height/3 + 300;
+
     if(mouseInRange(x, y, button_min_x, button_max_x, 350, 400)){ // high scores button
         highScoresButton();
     } else if(mouseInRange(x, y, button_min_x, button_max_x, 450, 500)){ // credits button
         creditsButton();
     } else if(mouseInRange(x, y, button_min_x, button_max_x, 550, 600)){ // exit menu button
         exitMenuButton();
+    } else if(mouseInRange(x, y, button_min_x, button_max_x, high_scores_button_y, high_scores_button_y + 50) && game_data.options['high_scores']){ // reset high scores button
+        resetHighScores();
     }
 }
 

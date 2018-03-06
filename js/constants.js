@@ -16,7 +16,9 @@ BLUE_BRICK = 3; // Score value for blue bricks
 GREEN_BRICK = 5; // Score value for green bricks
 MAX_POSSIBLE_SCORE = (YELLOW_BRICK+ORANGE_BRICK+BLUE_BRICK+GREEN_BRICK)*((BRICKS_GRID_HEIGHT/4)*BRICKS_GRID_WIDTH);
 BRICKS_AREA = 6; // adjusts the area the bricks take up, as well as the area above the bricks
-
+PARTICLE_SPEED = 0.02;
+PARTICLE_LIFETIME = 1000; // milliseconds
+PARTICLE_SIZE = 40;
 
 // Rendering options
 
@@ -36,5 +38,5 @@ GAME_OVER_FONT = '180px Arial';
 GAME_OVER_COLOR = 'rgba(255, 55, 55, 1)';
 MENU_FONT = '30px Arial';
 MENU_FONT_COLOR = 'rgba(255, 255, 255, 1)';
-MENU_BUTTON_FILL = 'rgba(100, 100, 155, 1)';
+MENU_BUTTON_FILL = 'rgba(100, 100, 100, 1)';
 MENU_BUTTON_STROKE = 'rgba(55, 55, 55, 1)';
