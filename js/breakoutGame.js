@@ -1,7 +1,14 @@
 function checkEndGame(){
     // Return true if its time to end game, false to continue play
-    if(game_data.player['lives'] < 0) return true;
-    if(game_data.player['score'] >= MAX_POSSIBLE_SCORE) return true;
+    if(game_data.state['game_over']) return true;
+    if(game_data.player['lives'] < 0) {
+        gameOver();
+        return true;
+    }
+    if(game_data.player['score'] >= MAX_POSSIBLE_SCORE){
+        gameOver();
+        return true;
+    }
 
     return false;
 }
@@ -56,7 +63,7 @@ function resetLife(){
 }
 
 function gameOver(){
-    renderGameOver();
+    game_data.state['game_over'] = true;
     saveHighScores();
 }
 

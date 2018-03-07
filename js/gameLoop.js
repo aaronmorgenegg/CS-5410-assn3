@@ -26,7 +26,8 @@ function initialize(){
         },
         'state': {
             'bricks_removed': 0,
-            'ball_speed_mult': 1
+            'ball_speed_mult': 1,
+            'game_over': false
         },
         'textures':{
             'background': background
@@ -52,19 +53,23 @@ function processInput(){
 }
 
 function update(){
-    if(!game_data.options['menu']) {
-        updateCountdown();
-    }
-    if(!game_data.options['paused']) {
-        updateMovement();
-        updateBalls();
-        updateLife();
-        updateParticles();
+    updateParticles();
+    game_data.state['game_over'] = checkEndGame();
+    if(!game_data.state['game_over']) {
+        if (!game_data.options['menu']) {
+            updateCountdown();
+        }
+        if (!game_data.options['paused']) {
+            updateMovement();
+            updateBalls();
+            updateLife();
+        }
     }
 }
 
 function render(){
     renderBackground();
+    renderParticles();
     if(game_data.options['credits']){
         renderCredits();
     } else if(game_data.options['high_scores']) {
@@ -72,13 +77,13 @@ function render(){
     } else if(game_data.options['menu']) {
         renderMenu();
     } else {
-        renderCountdown();
+        if(!game_data.state['game_over']) renderCountdown();
         renderScore();
         renderLives();
         renderBalls();
         renderBricks();
         renderPaddle();
-        renderParticles();
+        if(game_data.state['game_over']) renderGameOver();
     }
 }
 
@@ -90,8 +95,7 @@ function gameLoop(){
     render();
 
     // Event-based model, makes a request to the browser to loop when its ready. Allows the browser to do other things
-    if(!checkEndGame()) requestAnimationFrame(gameLoop);
-    else gameOver();
+    requestAnimationFrame(gameLoop);
 }
 
 initialize();

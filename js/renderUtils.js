@@ -81,3 +81,10 @@ function renderGameOver(){
     context.fillText("GAME", x, y);
     context.fillText("OVER", x, y+200);
 }
+
+function getRandomColor(){
+    r = Math.floor(Math.random() * 255);
+    g = Math.floor(Math.random() * 255);
+    b = Math.floor(Math.random() * 255);
+    return 'rgba('+r+', '+g+', '+b+', 1)'
+}
