@@ -19,6 +19,21 @@ function exitMenu(){
     setCountdown();
 }
 
+function resetGame(){
+    game_data.player = {'score': 0, 'lives': 3, 'input': ''};
+    game_data.options = {'paused': true, 'menu': true, 'credits': false, 'high_scores': false};
+    game_data.state = {'bricks_removed': 0, 'ball_speed_mult':1, 'game_over':false};
+    game_data.bricks = getBricksGrid();
+    game_data.paddle = getPaddle();
+    game_data.balls = [getBall()];
+    game_data.particles = [];
+}
+
+function newGameButton(){
+    resetGame();
+    exitMenu();
+}
+
 function highScoresButton(){
     game_data.options['high_scores'] = true;
 }
@@ -68,11 +83,14 @@ function onMouseClick(){
 
     high_scores_button_y = game_data.canvas.height/3 + 300;
 
-    if(mouseInRange(x, y, button_min_x, button_max_x, 350, 400)){ // high scores button
+    if(mouseInRange(x, y, button_min_x, button_max_x, 300, 350)) { // high scores button
+        newGameButton();
+    }
+    else if(mouseInRange(x, y, button_min_x, button_max_x, 400, 450)){ // high scores button
         highScoresButton();
-    } else if(mouseInRange(x, y, button_min_x, button_max_x, 450, 500)){ // credits button
+    } else if(mouseInRange(x, y, button_min_x, button_max_x, 500, 550)){ // credits button
         creditsButton();
-    } else if(mouseInRange(x, y, button_min_x, button_max_x, 550, 600)){ // exit menu button
+    } else if(mouseInRange(x, y, button_min_x, button_max_x, 600, 650)){ // exit menu button
         exitMenuButton();
     } else if(mouseInRange(x, y, button_min_x, button_max_x, high_scores_button_y, high_scores_button_y + 50) && game_data.options['high_scores']){ // reset high scores button
         resetHighScores();
@@ -128,7 +146,8 @@ function renderMenuButton(spec){
 }
 
 function renderMenu(){
-    renderMenuButton({msg:'High Scores', y:350});
-    renderMenuButton({msg:'Credits', y:450});
-    renderMenuButton({msg:'Exit Menu', y:550});
+    renderMenuButton({msg:'New Game', y:300});
+    renderMenuButton({msg:'High Scores', y:400});
+    renderMenuButton({msg:'Credits', y:500});
+    renderMenuButton({msg:'Exit Menu', y:600});
 }
