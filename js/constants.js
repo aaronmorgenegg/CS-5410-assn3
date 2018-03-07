@@ -17,7 +17,7 @@ GREEN_BRICK = 5; // Score value for green bricks
 MAX_POSSIBLE_SCORE = (YELLOW_BRICK+ORANGE_BRICK+BLUE_BRICK+GREEN_BRICK)*((BRICKS_GRID_HEIGHT/4)*BRICKS_GRID_WIDTH);
 BRICKS_AREA = 6; // adjusts the area the bricks take up, as well as the area above the bricks
 PARTICLE_SPEED = 0.005;
-PARTICLE_LIFETIME = 1000; // milliseconds
+PARTICLE_LIFETIME = 600; // milliseconds
 PARTICLE_SIZE = 2;
 NUM_PARTICLES = 10; // squared, so 10 means 100 particles
 

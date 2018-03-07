@@ -86,7 +86,7 @@ function createFireworks(y, x){
         for(j = 0; j < NUM_PARTICLES; j++){
             xvel = PARTICLE_SPEED * (p_x - center_x) * Math.random();
             yvel = PARTICLE_SPEED * (p_y - center_y) * Math.random();
-            lifetime = PARTICLE_LIFETIME * Math.random() * 3;
+            lifetime = PARTICLE_LIFETIME * Math.random() * 5;
             createParticle({'x':p_x, 'y':p_y, 'xvel': xvel, 'yvel':yvel, 'lifetime':lifetime, 'color':color});
             p_x += step_x;
         }
@@ -96,7 +96,7 @@ function createFireworks(y, x){
 }
 
 function gameOverFireworks(){
-    if(Math.random() <= .05){
+    if(Math.random() <= .025){
         r_x = Math.random() * (game_data.canvas.width - 400) + 200;
         r_y = Math.random() * (game_data.canvas.height - 400) + 200;
         createFireworks(r_y, r_x);
